@@ -26,6 +26,9 @@
     <Compile Include="flightscheduler\apps\flightapp\apps.py" />
     <Compile Include="flightscheduler\apps\flightapp\migrations\__init__.py" />
     <Compile Include="flightscheduler\apps\flightapp\models.py" />
+    <Compile Include="flightscheduler\apps\flightapp\serializer.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="flightscheduler\apps\flightapp\tests.py" />
     <Compile Include="flightscheduler\apps\flightapp\urls.py">
       <SubType>Code</SubType>
