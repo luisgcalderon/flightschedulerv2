@@ -8,7 +8,7 @@ from rest_framework import viewsets, status
 from rest_framework.parsers import JSONParser
 
 from .serializer import UserSerializer, ScheduleSerializer
-from .models import User
+from .models import Schedule
 
 
 
@@ -32,7 +32,7 @@ def flight_list(request):
         return JsonResponse(schedules_serializer.data, safe=False)
     # Add
     elif request.method == 'POST':
-        schedule_data = JSONParser().parser(request)
+        schedule_data = JSONParser().parse(request)
         schedules_serializer = ScheduleSerializer(data=schedule_data)
         if schedules_serializer.is_valid():
             schedules_serializer.save()
@@ -46,9 +46,9 @@ def flight_list(request):
     pass
 
 @csrf_exempt
-def flight_detail(request):
+def flight_detail(request, pk):
     try:
-        schedule = Schedule.objects.get(pk=primary_key)
+        schedule = Schedule.objects.get(pk=pk)
     except Schedule.DoesNotExist:
         return HttpResponse(status=status.HTTP_404_NOT_FOUND)
 
@@ -59,7 +59,7 @@ def flight_detail(request):
 
     #Update one record
     if request.method == 'PUT':
-        schedule_data = JSONParse().parser(request)
+        schedule_data = JSONParser().parse(request)
         schedule_serializer = ScheduleSerializer(schedule, data, schedule_data)
         if schedule_serializer.is_valid():
             scheduler_serializer.save()

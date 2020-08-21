@@ -65,6 +65,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # third-party
     'rest_framework',
+    'corsheaders',
     # ...
     # local
     'flightscheduler.apps.flightapp'
@@ -80,9 +81,14 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.locale.LocaleMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'flightscheduler.urls'
+
+CORS_ORIGIN_WHITELIST = [
+    'http://localhost:4200',
+    ]
 
 TEMPLATES = [
     {
