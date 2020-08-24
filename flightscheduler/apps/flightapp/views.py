@@ -60,11 +60,11 @@ def flight_detail(request, pk):
     #Update one record
     if request.method == 'PUT':
         schedule_data = JSONParser().parse(request)
-        schedule_serializer = ScheduleSerializer(schedule, data, schedule_data)
+        schedule_serializer = ScheduleSerializer(schedule, data=schedule_data)
         if schedule_serializer.is_valid():
-            scheduler_serializer.save()
+            schedule_serializer.save()
             return JsonResponse(schedule_serializer.data)
-        return JsonResponse(schedule_resializer.error.errors, status=status.HTTP_400_BAD_REQUEST)
+        return JsonResponse(schedule_serializer.error.errors, status=status.HTTP_400_BAD_REQUEST)
     if request.method == 'DELETE':
         schedule.delete()
         return HttpResponse(status=status.HTTP_204_NO_CONTENT)
